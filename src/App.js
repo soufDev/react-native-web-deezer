@@ -18,10 +18,7 @@ function useInput(initValue) {
 
 const styles = StyleSheet.create({
   app: {
-    marginTop: 0,
-    marginRight: 'auto',
-    marginBottom: 0,
-    marginLeft: 'auto',
+    flex: 1
   },
   searchInput: {
     padding: 5,
@@ -33,9 +30,14 @@ const styles = StyleSheet.create({
   },
   Footer: {
     position: 'fixed',
+    flex: 0.1,
     left: 0,
-    bottom: 0,
-    backgroundColor: 'lightblue',
+    right: 0,
+    bottom: -10,
+    backgroundColor:'lightblue',
+    flexDirection:'row',
+    height:80,
+    alignItems:'center',
   }
 });
 
@@ -51,7 +53,7 @@ function App() {
   const [dataResponse, setDataResponse] = React.useState([]);
   const search = useInput('');
   const onSubmit = ({ target }) => {
-    seachByArtist('eminem').then(response => { console.log(response.data); setDataResponse(response.data) });
+    seachByArtist(target.value).then(response => { console.log(response.data); setDataResponse(response.data) });
   }
   const searchResult = useFetchByArtist('eminem');
   return (

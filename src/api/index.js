@@ -18,3 +18,8 @@ export const seachByArtist = async (artist) => {
 export const seachByArtistAbort = () => cancel('Searcg By Artist Abort');
 
 export { cancel as ApiCallAbort };
+
+export const findTrackById = async (id) => {
+    const response = await axios.get(`/track/${id}`, cancellation);
+    return response.data;
+}

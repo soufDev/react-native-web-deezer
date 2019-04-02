@@ -1,5 +1,7 @@
 import React from 'react';
 import { FlatList, TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
+import playPauseImage from '../../assets/images/playPause.png';
+import detailsImage from '../../assets/images/details.png';
 
 const styles = StyleSheet.create({
     wrapperItem: {
@@ -8,27 +10,71 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         display: 'flex',
         flexDirection: 'row'
-    }
+    },
+    title: {
+        color: 'black',
+        fontWeight: 'bold',
+        maxWidth: 150,
+        minWidth: 100
+    },
+    artistName: {
+        color: 'rgb(103, 103, 103)',
+        alignSelf: 'flex-start'
+    },
+    textView: { 
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        marginLeft: 20,
+
+    },
+    buttonView: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginLeft: 'auto',
+        alignItems: 'center'
+    },
+    trackImage: {
+        width: 50, 
+        height: 50, 
+        borderRadius: 50,
+    },
+    imgStyle: {
+        width: 30, 
+        height: 30,
+        marginRight: 5
+    },
 })
 
-export const MyListItems =  React.memo(({ onPressItem, id, selected, title, artistName, imageSrc }) => {
+export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, imageSrc }) => {
     const onPress = () => {
         onPressItem(id);
     }
-    const textColor = selected ? 'red': 'black';
     return (
-        <TouchableOpacity onPress={onPress}>
             <View style={styles.wrapperItem}>
                 <Image
-                    style={{width: 50, height: 50, borderRadius: 50}}
+                    style={styles.trackImage}
                     source={{uri: imageSrc}}
                 />
-                <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginLeft: 20, flexGrow: 'start' }}>
-                    <Text style={{ color: textColor, alignSelf: 'center', fontWeight: 'bold' }}>{title}</Text>
-                    <Text style={{ color: 'rgb(103, 103, 103)', alignSelf: 'flex-start' }}>{artistName}</Text>
+                <View style={styles.textView}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.artistName}>{artistName}</Text>
+                </View>
+                <View style={styles.buttonView}>
+                    <TouchableOpacity onPress={() => console.log('play/pause', id)}>
+                        <Image
+                            source={playPauseImage}
+                            style={styles.imgStyle}
+                        />    
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => console.log('Show Details', id)}>
+                        <Image 
+                            source={detailsImage}
+                            style={styles.imgStyle}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
-        </TouchableOpacity>
     )
 });
 

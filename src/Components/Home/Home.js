@@ -16,7 +16,7 @@ export const Home = React.memo((props) => {
     <View style={styles.app}>
       <View style={styles.Header} />
       <SearchInput {...search} onSubmit={onSubmit} />
-      <SearchResult tracks={searchResult.data} />
+      <SearchResult tracks={searchResult.data} navigation={props.navigation} />
       <View style={styles.Footer} />
     </View>
   );

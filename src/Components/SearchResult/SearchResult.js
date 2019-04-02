@@ -46,9 +46,15 @@ const styles = StyleSheet.create({
     },
 })
 
-export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, imageSrc }) => {
+export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, imageSrc, navigation }) => {
     const onPress = () => {
         onPressItem(id);
+    }
+
+    const showTrackDetail = () => {
+        navigation.navigate('Detail', {
+            trackId: id,
+        })
     }
     return (
             <View style={styles.wrapperItem}>
@@ -67,7 +73,7 @@ export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, im
                             style={styles.imgStyle}
                         />    
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('Show Details', id)}>
+                    <TouchableOpacity onPress={showTrackDetail}>
                         <Image 
                             source={detailsImage}
                             style={styles.imgStyle}
@@ -78,7 +84,7 @@ export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, im
     )
 });
 
-export const SearchResult = React.memo(({ tracks }) => {
+export const SearchResult = React.memo(({ tracks, navigation }) => {
     const renderItems = ({ item }) => (
         <MyListItems
             id={item.id}
@@ -86,6 +92,7 @@ export const SearchResult = React.memo(({ tracks }) => {
             title={item.title}
             artistName={item.artist.name}
             imageSrc={item.album.cover_small}
+            navigation={navigation}
         />
     )
     const keyExtractor = (item, index) => item.id;

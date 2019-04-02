@@ -4,6 +4,7 @@ import { createBrowserApp } from "@react-navigation/web";
 import Spinner from './Components/Spinner';
 import Footer from './Components/Footer';
 import HomeScreen from './Components/Home';
+import DetailScreen from './Components/Detail';
 
 const { lazy, Suspense } = React;
 
@@ -12,6 +13,9 @@ const { lazy, Suspense } = React;
 const MyNavigation = createSwitchNavigator({
   Home: {
     screen: HomeScreen,
+  },
+  Detail: {
+    screen: DetailScreen,
   }
 })
 

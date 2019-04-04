@@ -16,17 +16,36 @@ export const Detail = React.memo((props) => {
     if (detail) {
         return (
             <View style={styles.container}>
-                <Button title="go back" onPress={() => props.navigation.navigate('Detail')}/>
-                <Text>{detail.title}</Text>
-                <Text>{detail.artist.name}</Text>
-                <Image
-                    source ={{ uri: detail.artist.picture}}
-                    style={{ width: 100, height: 100, borderRadius: 50 }}
+                <Button
+                    title="<"
+                    onPress={() => props.navigation.navigate('Home')}
+                    style={styles.goback}
                 />
-                <Image
-                    source={{uri: detail.album.cover_xl}}
-                    style={{ width: 300, height: 300, alignSelf: 'center', borderRadius: 150}}
-                />
+                <View style={styles.description}>
+                    <Image
+                        source ={{ uri: detail.artist.picture}}
+                        style={{ width: 60, height: 60, borderRadius: 30 }}
+                    />
+                    <View style={styles.detail}>
+                        <Text>{detail.title}</Text>
+                        <Text>{detail.artist.name}</Text>
+                    </View>
+                </View>
+                <View style={styles.trackDetail}>
+                    <Image
+                        source={{uri: detail.album.cover_xl}}
+                        style={styles.trackImg}
+                    />
+                    <Text style={styles.releasedDate}>Album Released: {detail.album.release_date}</Text>
+                    <figure>
+                        <audio
+                            controls
+                            src={detail.preview}>
+                                Your browser does not support the
+                                <code>audio</code> element.
+                        </audio>
+                    </figure>
+                </View>
             </View>
         )
     }
@@ -37,5 +56,35 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         alignSelf: 'center'
+    },
+    description: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: 5,
+        backgroundColor: 'lightblue'
+    },
+    goback: {
+        padding: 40
+    },
+    detail: {
+        marginLeft: 10,
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    trackImg: {
+        width: 300,
+        height: 300,
+        alignSelf: 'center',
+        borderRadius: 150,
+    },
+    trackDetail: {
+        padding: 5,
+        alignItems: 'center'
+    },
+    releasedDate: {
+        padding: 20,
+        fontWeight: 'bold',
     }
 });

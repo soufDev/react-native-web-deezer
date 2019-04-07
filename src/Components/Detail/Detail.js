@@ -12,7 +12,6 @@ const useFetchDetail = (id) => {
 export const Detail = React.memo((props) => {
     const trackId = props.navigation.getParam('trackId');
     const detail = useFetchDetail(trackId);
-    console.log({ detail });
     if (detail) {
         return (
             <View style={styles.container}>

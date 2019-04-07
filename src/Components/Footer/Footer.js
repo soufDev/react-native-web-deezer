@@ -1,8 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 
-export const Footer = () => (
-    <View style={style} />
+export const Footer = ({ children }) => (
+    <View style={style}>
+        {children}
+    </View>
 )
 
 const style = {
@@ -15,4 +17,5 @@ const style = {
     flexDirection: 'row',
     height: 80,
     alignItems: 'center',
+    justifyContent: 'space-between'
 }

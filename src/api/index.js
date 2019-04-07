@@ -23,3 +23,7 @@ export const findTrackById = async (id) => {
     const response = await axios.get(`/track/${id}`, cancellation);
     return response.data;
 }
+
+export const searchByPage = (url) => {
+    return axios.get(url).then(response => response.data);
+}

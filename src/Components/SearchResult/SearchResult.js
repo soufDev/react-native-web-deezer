@@ -67,12 +67,6 @@ export const MyListItems =  React.memo(({ onPressItem, id, title, artistName, im
                     <Text style={styles.artistName}>{artistName}</Text>
                 </View>
                 <View style={styles.buttonView}>
-                    <TouchableOpacity onPress={() => console.log('play/pause', id)}>
-                        <Image
-                            source={playPauseImage}
-                            style={styles.imgStyle}
-                        />    
-                    </TouchableOpacity>
                     <TouchableOpacity onPress={showTrackDetail}>
                         <Image 
                             source={detailsImage}
